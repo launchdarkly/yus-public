@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  private-public-sync:
+    runs-on: ubuntu-latest
+    name: Private to public repo sync
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git remote add public git@github.com:launchdarkly/yus-public.git
+          git push public main
