@@ -12,7 +12,7 @@ jobs:
       - name: git-sync
         uses: wei/git-sync@v3
         with:
-          source_repo: "launchdarkly/yus-private.git"
+          source_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-private.git"
           source_branch: "main"
           destination_repo: "launchdarkly/yus-public.git"
           destination_branch: "main"
