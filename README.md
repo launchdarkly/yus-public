@@ -1,2 +1,2 @@
-# yus-private
-Private repo to test private to public repo sync
+# This is a test repo!
+To test private to public repo sync
