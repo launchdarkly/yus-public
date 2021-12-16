@@ -9,7 +9,7 @@ jobs:
     name: Private to public repo sync
     env:
       PUBLIC_REPO_NAME: yus-public
-    if: endsWith(github.event.repository.name, env.PUBLIC_REPO_NAME) != true
+    if: endsWith(GITHUB_REPOSITORY, PUBLIC_REPO_NAME) != true
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
