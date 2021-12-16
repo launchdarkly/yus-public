@@ -9,12 +9,12 @@ jobs:
     name: Private to public repo sync
     env:
       PUBLIC_REPO_NAME: yus-public
-    if: endsWith(github.event.repository.name, env.PUBLIC_REPO_NAME) != true
+    if: endsWith(env.GITHUB_REPOSITORY, env.PUBLIC_REPO_NAME) != true
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
         with:
           source_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.PRIVATE_REPO_NAME }}.git"
           source_branch: "main"
-          destination_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/${{ PUBLIC_REPO_NAME }}.git"
+          destination_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/${{ env.PUBLIC_REPO_NAME }}.git"
           destination_branch: "main"
