@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Private to public repo sync
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          git config --global user.email "yusinto@gmail.com"
-          git config --global user.name "Yus Ng"
-          git remote add public https://${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git
-          git push public main
+      - name: git-sync
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-private.git"
+          source_branch: "main"
+          destination_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git"
+          destination_branch: "main"
