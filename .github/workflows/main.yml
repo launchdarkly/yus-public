@@ -7,7 +7,7 @@ jobs:
   private-public-sync:
     runs-on: ubuntu-latest
     name: Private to public repo sync
-    if: !endsWith(github.event.repository.name, 'yus-public') != true
+    if: endsWith(github.event.repository.name, 'yus-public') != true
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
