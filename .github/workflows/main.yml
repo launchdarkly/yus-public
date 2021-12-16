@@ -10,5 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git remote add public git@github.com:launchdarkly/yus-public.git
+          git config --global user.email "yusinto@gmail.com"
+          git config --global user.name "Yus Ng"
+          git remote add public https://${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git
           git push public main
