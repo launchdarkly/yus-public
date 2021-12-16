@@ -4,22 +4,10 @@ on:
       - main
 
 jobs:
-  get-secret:
-    runs-on: ubuntu-latest
-    outputs:
-      privateRepoName: ${{ steps.privateRepoName.outputs.defined }}
-    steps:
-      - id: privateRepoName
-        env:
-          PRIVATE_REPO_NAME: ${{ secrets.PRIVATE_REPO_NAME }}
-        if: "${{ env.PRIVATE_REPO_NAME != '' }}"
-        run: echo "::set-output name=defined::true"
-
   private-public-sync:
     runs-on: ubuntu-latest
-    needs: [ get-secret ]
-    if: github.event.repository.name == needs.get-secret.outputs.privateRepoName
     name: Private to public repo sync
+    if: !endsWith(github.event.repository.name, 'yus-public')
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
