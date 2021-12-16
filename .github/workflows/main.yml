@@ -7,9 +7,12 @@ jobs:
   private-public-sync:
     runs-on: ubuntu-latest
     name: Private to public repo sync
-    if: ${{ github.event.repository.name == secrets.PRIVATE_REPO_NAME }}
     steps:
+      - name: Get private repo name
+        id: secret
+        run: echo '::set-output name=privateRepoName::${{ secrets.PRIVATE_REPO_NAME }}'
       - name: git-sync
+        if: github.event.repository.name == steps.secret.outputs.privateRepoName
         uses: wei/git-sync@v3
         with:
           source_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.PRIVATE_REPO_NAME }}.git"
