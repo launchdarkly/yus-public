@@ -7,7 +7,7 @@ jobs:
   private-public-sync:
     runs-on: ubuntu-latest
     name: Private to public repo sync
-    if: github.event.repository.name == ${{ secrets.PRIVATE_REPO_NAME }}
+    if: ${{ github.event.repository.name == secrets.PRIVATE_REPO_NAME }}
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
