@@ -25,6 +25,7 @@ jobs:
             git config --global user.name "Yus Ngadiman"
             git pull public main --rebase
             git commit -am "Merged public commits into private"
+            git pull
             git push
           else
             echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
