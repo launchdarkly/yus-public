@@ -16,7 +16,7 @@ jobs:
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
           git pull public main --rebase --allow-unrelated-histories
           git commit -am "Merged public commits into private"
-          git push --ff-only --dry-run
+          git push --dry-run
       - name: git-sync
         uses: wei/git-sync@v3
         with:
