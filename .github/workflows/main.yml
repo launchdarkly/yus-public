@@ -21,13 +21,13 @@ jobs:
           HAS_DIFF=$(git diff-index --exit-code HEAD)
           
           if [[ $HAS_DIFF == 1 ]]; then
-            echo "Found differences between public and private. Will merge public changes into private."
+            echo "Found differences between public and private. Will merge public changes into private then push from private to public."
             git config --global user.email "yusinto@gmail.com"
             git config --global user.name "Yus Ngadiman"
             git commit -am "Merged public commits into private"
             git push --dry-run
           else
-            echo "No differences found between public and private."
+            echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
           fi
 
       - name: git-sync
