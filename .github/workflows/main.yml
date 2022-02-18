@@ -18,9 +18,8 @@ jobs:
           git config --global user.email "yusinto@gmail.com"
           git config --global user.name "Yus Ngadiman"
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
-          git pull public main --rebase --allow-unrelated-histories
-          git commit -am "Merged public commits into private"
-          git push --dry-run
+          git pull public main
+          git diff-index --quiet HEAD || git commit -am "Merged public commits into private" && git push --dry-run
       - name: git-sync
         uses: wei/git-sync@v3
         with:
