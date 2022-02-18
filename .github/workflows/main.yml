@@ -16,7 +16,7 @@ jobs:
           node-version: '16.x'
       - run: |
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
-          git diff --quiet --exit-code origin/main public/main || HAS_DIFF=1
+          git diff --quiet --exit-code origin/main public/main -- || HAS_DIFF=1
           
           if [[ $HAS_DIFF == 1 ]]; then
             echo "Found differences between public and private. Will merge public changes into private then push from private to public."
