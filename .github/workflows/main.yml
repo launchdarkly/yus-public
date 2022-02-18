@@ -28,6 +28,7 @@ jobs:
             git commit -am "Merged public commits into private"
             echo "Commit successful. Will push now."
             git push
+            echo "Push done. Will sync now."
           else
             echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
           fi
