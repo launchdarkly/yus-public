@@ -22,7 +22,7 @@ jobs:
           git diff-index --quiet HEAD || HAS_DIFF=1
           
           if [[ $HAS_DIFF == 1 ]]; then
-            echo "Found differences between public and private. Will merge public changes into private then push from private to public."
+            echo "== Found differences between public and private. Will merge public changes into private then push from private to public."
           else
             echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
           fi
