@@ -16,7 +16,7 @@ jobs:
           node-version: '16.x'
       - run: |
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
-          get fetch public
+          git fetch public
           git diff --quiet --exit-code public/main main || HAS_DIFF=1
           
           if [[ $HAS_DIFF == 1 ]]; then
