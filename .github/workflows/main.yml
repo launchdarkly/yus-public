@@ -14,7 +14,7 @@ jobs:
           node-version: '16.x'
       - run: |
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
-          git pull public main
+          git pull public main --ff-only
           git commit -am "Merged public commits into private"
           git push --ff-only --dry-run
       - name: git-sync
