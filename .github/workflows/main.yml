@@ -2,13 +2,21 @@ on:
   push:
     branches:
       - main
-
 jobs:
   private-public-sync:
     runs-on: ubuntu-latest
     name: Private to public repo sync
     if: endsWith(github.event.repository.name, 'yus-private')
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - run: |
+          git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
+          git pull public main
+          git commit -am "Merged public commits into private"
+          git push --ff-only --dry-run
       - name: git-sync
         uses: wei/git-sync@v3
         with:
@@ -16,16 +24,3 @@ jobs:
           source_branch: "main"
           destination_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git"
           destination_branch: "main"
-
-#  public-private-sync:
-#    runs-on: ubuntu-latest
-#    name: Public to private repo sync
-#    if: endsWith(github.event.repository.name, 'yus-public') == true
-#    steps:
-#      - name: git-sync
-#        uses: wei/git-sync@v3
-#        with:
-#          source_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git"
-#          source_branch: "main"
-#          destination_repo: "https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/${{ secrets.PRIVATE_REPO_NAME }}.git"
-#          destination_branch: "main"
