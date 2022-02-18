@@ -24,9 +24,7 @@ jobs:
             git config --global user.email "yusinto@gmail.com"
             git config --global user.name "Yus Ngadiman"
             git pull public main --rebase
-            echo "Rebase successful. Will commit now."
-            git pull && git push
-            echo "Push done. Will sync now."
+            git pull --rebase && git push
           else
             echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
           fi
