@@ -15,6 +15,8 @@ jobs:
         with:
           node-version: '16.x'
       - run: |
+          git config --global user.email "yusinto@gmail.com"
+          git config --global user.name "Yus Ngadiman"
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
           git pull public main --rebase --allow-unrelated-histories
           git commit -am "Merged public commits into private"
