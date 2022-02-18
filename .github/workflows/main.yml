@@ -25,7 +25,7 @@ jobs:
             git config --global user.name "Yus Ngadiman"
             git pull public main --rebase
             echo "Rebase successful. Will commit now."
-            git commit -am "Merged public commits into private"
+            git diff-index --quiet HEAD || git commit -am "Merged public commits into private"
             echo "Commit successful. Will push now."
             git push
             echo "Push done. Will sync now."
