@@ -17,7 +17,7 @@ jobs:
       - run: |
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
           git pull public main
-          
+          #test
           HAS_DIFF=$(git diff-index --exit-code HEAD)
           
           if [[ $HAS_DIFF == 1 ]]; then
