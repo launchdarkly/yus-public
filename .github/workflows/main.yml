@@ -18,6 +18,7 @@ jobs:
           git config --global user.email "yusinto@gmail.com"
           git config --global user.name "Yus Ngadiman"
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
+          git fetch public
           git pull public main --rebase
           git diff-index --quiet HEAD || HAS_DIFF=1
           
