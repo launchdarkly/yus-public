@@ -9,6 +9,8 @@ jobs:
     if: endsWith(github.event.repository.name, 'yus-private')
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all refs instead of just the single current one
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
