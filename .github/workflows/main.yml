@@ -19,8 +19,14 @@ jobs:
           git config --global user.name "Yus Ngadiman"
           git remote add public 'https://yusinto:${{ secrets.GH_TOKEN }}@github.com/launchdarkly/yus-public.git'
           git fetch public
-          git pull public main --rebase
-          git pull --rebase && git push
+          
+          if git pull public main --rebase; then
+            echo "Successfully merged public to private."
+            git pull --rebase && git push
+            echo "Successfully pushed to private."
+          else
+            echo "Conflict detected. TODO: Using the GH cli, create a PR containing the conflicts to be resolved in private repo."
+          fi
       - name: git-sync
         uses: wei/git-sync@v3
         with:
