@@ -21,15 +21,6 @@ jobs:
           git fetch public
           git pull public main --rebase
           git pull --rebase && git push
-#          git diff --quiet public/main main || HAS_DIFF=1
-#
-#          if [[ $HAS_DIFF == 1 ]]; then
-#            echo "== Found differences between public and private. Will merge public changes into private then push from private to public."
-#            git push
-#          else
-#            echo "No differences found between public and private so not pulling from public to private. Will proceed to push private to public."
-#          fi
-
       - name: git-sync
         uses: wei/git-sync@v3
         with:
