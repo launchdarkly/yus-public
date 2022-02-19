@@ -26,6 +26,7 @@ jobs:
             echo "Successfully pushed to private."
           else
             echo "Conflict detected. TODO: Using the GH cli, create a PR containing the conflicts to be resolved in private repo."
+            exit 1
           fi
       - name: git-sync
         uses: wei/git-sync@v3
